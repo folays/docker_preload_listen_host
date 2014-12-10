@@ -6,3 +6,6 @@ if [ ! -e /var/run/netns-host ]; then
 fi
 
 docker create --privileged=true -v /var/run/netns-host:/var/run/netns-host ...
+
+# and then you should add to your /etc/apache2/envvars file:
+export LD_PRELOAD=/root/docker_preload_listen_host/libpreload-docker-listen-host.so
