@@ -1,0 +1,4 @@
+*.so
+docker-listen-host
+*.o
+*~
