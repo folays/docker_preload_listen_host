@@ -43,6 +43,11 @@ int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
       if (dup2(fd_new_socket, sockfd) != sockfd)
 	err(1, "%s : dup2 failed", __func__);
       close(fd_new_socket);
+
+      {
+	int reuse = 1;
+	setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (int *)&reuse, sizeof(reuse));
+      }
     }
   int ret = syscall(SYS_bind, sockfd, addr, addrlen);
   if (flag_listen_host)
